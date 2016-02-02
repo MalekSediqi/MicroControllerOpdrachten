@@ -37,48 +37,32 @@ void wait(int param1)
 	for(int i = 0; i< param1;i++)
 	{
 
-	_delay_ms(1);
+		_delay_ms(1);
 	}
 }
+
 
 int main (void)
 {
 	/* Insert system clock initialization code here (sysclk_init()). */
 
 	board_init();
-	DDRD = 0b11111111;
-	DDRA = 0b00000000;
-	DDRB = 0b11111111;
-	DDRC = 0b11111111;
+	DDRD = 0b01111111;
 	
-
 	while(true)
 	{
-		//PORTA = 0b11111111;
-		//wait(5000);
-		//PORTB = 0b11111111;
-		//wait(5000);
-		//PORTC = 0b11111111;
-		//wait(5000);
-		//PORTD = 0b11111111;
-		//wait(5000);
-		//PORTA = 0x00;
-		//PORTB = 0x00;
-		//PORTC = 0x00;
-		//PORTD = 0x00;
-		//wait(5000);
-		if(PORTA >0)
+		PINC = 0b01000000;
+		if(PINC == 0)
 		{
 			PORTD = 0b01000000;
-			wait(40000);
+			wait(500);
 			PORTD = 0b00000000;
-			wait(40000);
-
+			wait(500);
 		}
 		else
 		{
 
-		PORTD = 0b00000000;
+			PORTD = 0b00000000;
 		}
 
 	}
