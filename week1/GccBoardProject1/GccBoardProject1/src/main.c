@@ -30,7 +30,7 @@
  */
 #include <asf.h>
 #include <util/delay.h>
-#include "avr/iom128a.h"
+
 
 void wait(int param1)
 {
@@ -40,6 +40,14 @@ void wait(int param1)
 	_delay_ms(1);
 	}
 }
+void setPattern1(int toSaveTo[])
+{
+	for(int i = 0; i< 8; i++)
+	{
+		toSaveTo[i] = 0x01<<i;
+	}
+
+}
 
 int main (void)
 {
@@ -47,13 +55,14 @@ int main (void)
 
 	board_init();
 	DDRD = 0b11111111;
-	DDRA = 0b00000000;
 	DDRB = 0b11111111;
-	DDRC = 0b11111111;
-	
-
+	int pattern[8] = {};
+	setPattern1(pattern);
+	int counter = 0;
+	bool toggled = false;
 	while(true)
 	{
+	//OPDRACHT B2
 		//PORTA = 0b11111111;
 		//wait(5000);
 		//PORTB = 0b11111111;
@@ -67,22 +76,41 @@ int main (void)
 		//PORTC = 0x00;
 		//PORTD = 0x00;
 		//wait(5000);
-		if(PORTA >0)
-		{
-			PORTD = 0b01000000;
-			wait(40000);
-			PORTD = 0b00000000;
-			wait(40000);
+		//OPDRACHT b5
+		//PORTD = pattern[counter];
+		//counter++;
+		//if(counter >7)
+		//{
+			//counter = 0;
+//
+		//}
+		//wait(500);
 
-		}
-		else
-		{
-
-		PORTD = 0b00000000;
-		}
-
-	}
-	return 1;
+		// OPDRAcht B6
+		//if(PINC >= 1)
+		//{
+			//toggled = !toggled;
+			//wait(1000);
+			//
+		//}
+//
+		//if(toggled)
+		//{
+			//PORTD = 64;
+			//wait(250);
+			//PORTD = 0;
+			//wait(250);
+//
+		//}
+		//else
+		//{
+			//PORTD = 64;
+			//wait(1000);
+			//PORTD = 0;
+			//wait(1000);
+		//}
+	//}
+	//return 1;
 
 	/* Insert application code here, after the board has been initialized. */
 }
