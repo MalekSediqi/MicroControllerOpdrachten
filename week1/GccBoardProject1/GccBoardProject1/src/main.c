@@ -48,6 +48,48 @@ void setPattern1(int toSaveTo[])
 	}
 
 }
+void setStates(int state[])
+{
+	int i;
+	for(i = 0; i<8 ;i++)
+	{
+		state[i] = 0x01<<i;
+	}
+}
+
+void handleState(int state[])
+{
+	int i;
+	//int k = strlen(state);
+	for(i=0; i< 8; i++)
+	{
+		if(state[i] = PINA)
+		{
+			switch(i)
+			{
+				case 0:
+				PORTD = 127;
+				break;
+				case 1:
+				PORTD = 255;
+				break;
+				case 2:
+				PORTC = 1;
+				break;
+				case 3:
+				PORTD = 0;
+				PORTC = 0;
+				break;
+				case 4:
+				break;
+				default:
+				break;
+			}
+			wait(1000);
+		}
+	}
+
+}
 
 
 int main (void)
@@ -78,9 +120,12 @@ int main (void)
 // 	return 1;
 
 	DDRD = 0b11111111;
+	DDRC = 0b11111111;
 	DDRB = 0b11111111;
+	int states[8] = {};
 	int pattern[8] = {};
 	setPattern1(pattern);
+	setStates(states);
 	int counter = 0;
 	bool toggled = false;
 // 	while(true)
@@ -133,7 +178,13 @@ int main (void)
 			//wait(1000);
 		//}
 	//}
-	//return 1;
+
+	while(true)
+	{
+
+		handleState(states);
+	}
+	return 1;
 
 	/* Insert application code here, after the board has been initialized. */
 }
