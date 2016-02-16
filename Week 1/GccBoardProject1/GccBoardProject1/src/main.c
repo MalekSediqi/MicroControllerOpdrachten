@@ -30,7 +30,7 @@
  */
 #include <asf.h>
 #include <util/delay.h>
-
+#define BIT(x) (1<<(x))
 
 void wait(int param1)
 {
@@ -97,7 +97,7 @@ int main (void)
 	/* Insert system clock initialization code here (sysclk_init()). */
 
 	board_init();
-// OPDRACHT b3 
+//////////////////////////////////////////////////// OPDRACHT b3 
 // 	DDRD = 0b01111111;
 // 	
 // 	while(true)
@@ -128,9 +128,10 @@ int main (void)
 	setStates(states);
 	int counter = 0;
 	bool toggled = false;
+
 // 	while(true)
 // 	{
-	//OPDRACHT B2
+	//////////////////////////////////////////////////OPDRACHT B2
 		//PORTA = 0b11111111;
 		//wait(5000);
 		//PORTB = 0b11111111;
@@ -144,47 +145,51 @@ int main (void)
 		//PORTC = 0x00;
 		//PORTD = 0x00;
 		//wait(5000);
-		//OPDRACHT b5
-		//PORTD = pattern[counter];
-		//counter++;
-		//if(counter >7)
-		//{
-			//counter = 0;
-//
-		//}
-		//wait(500);
 
-		// OPDRAcht B6
-		//if(PINC >= 1)
-		//{
-			//toggled = !toggled;
-			//wait(1000);
-			//
-		//}
-//
-		//if(toggled)
-		//{
-			//PORTD = 64;
-			//wait(250);
-			//PORTD = 0;
-			//wait(250);
-//
-		//}
-		//else
-		//{
-			//PORTD = 64;
-			//wait(1000);
-			//PORTD = 0;
-			//wait(1000);
-		//}
-	//}
 
-	while(true)
-	{
+		/////////////////////////////////////////////OPDRACHT b5
+// 		PORTD = pattern[counter];
+// 		counter++;
+// 		if(counter >7)
+// 		{
+// 			counter = 0;
+// 
+// 		}
+// 		wait(500);
 
-		handleState(states);
-	}
-	return 1;
+		//////////////////////////////////////////// OPDRAcht B6
+// 		if(PINC >= 1)
+// 		{
+// 			toggled = !toggled;
+// 			wait(1000);
+// 			
+// 		}
+// 
+// 		if(toggled)
+// 		{
+// 			PORTD = 64;
+// 			wait(250);
+// 			PORTD = 0;
+// 			wait(250);
+// 
+// 		}
+// 		else
+// 		{
+// 			PORTD = 64;
+// 			wait(1000);
+// 			PORTD = 0;
+// 			wait(1000);
+// 		}
+// 	
+
+
+	/////////////////////////////////////////////////b7a
+ 	while(true)
+ 	{
+	 	
+	 	handleState(states);
+ 	}
+ 	return 1;
 
 	/* Insert application code here, after the board has been initialized. */
 }
