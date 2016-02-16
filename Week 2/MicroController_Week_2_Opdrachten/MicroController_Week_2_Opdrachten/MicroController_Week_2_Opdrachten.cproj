@@ -12,9 +12,9 @@
     <OutputFileName>$(MSBuildProjectName)</OutputFileName>
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
-    <AssemblyName>Microcontrollers_Week2_Opdracht_1</AssemblyName>
-    <Name>Microcontrollers_Week2_Opdracht_1</Name>
-    <RootNamespace>Microcontrollers_Week2_Opdracht_1</RootNamespace>
+    <AssemblyName>MicroController_Week_2_Opdrachten</AssemblyName>
+    <Name>MicroController_Week_2_Opdrachten</Name>
+    <RootNamespace>MicroController_Week_2_Opdrachten</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
@@ -192,6 +192,15 @@
     <Folder Include="src\config\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\B2.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\B3.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\B4.c">
+      <SubType>compile</SubType>
+    </Compile>
     <None Include="src\asf.h">
       <SubType>compile</SubType>
     </None>
