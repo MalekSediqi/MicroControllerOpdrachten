@@ -27,15 +27,10 @@ typedef struct {
 //        y y y y x x x x
 
 PATTERN_STRUCT pattern[] = { 
-	{0x80, 150}, {0x00, 150}, 
-	{0x80, 150}, {0x00, 150},
-	{0x01, 150}, {0x02, 150}, {0x40, 150}, {0x20, 150},
-	{0x01, 150}, {0x02, 150}, {0x40, 150}, {0x20, 150},
-	{0x00, 150},
-	{0x01, 150}, {0x03, 150}, {0x43, 150}, {0x63, 150},	
-	{0x01, 150}, {0x03, 150}, {0x43, 150}, {0x63, 150},
-	{0x00, 150},
-	{0xFF, 0}
+	{6, 1500}, {12, 1500}, 
+	{24, 1500}, {48, 1500},
+	{33, 1500}, {3, 1500}, {66, 1500}, {80, 1500},
+	{24, 1500},{12,1500}
 };
 void display(int digit)
 {
@@ -113,10 +108,12 @@ Version :    	DMK, Initial code
 		// as long as delay has meaningful content
 		while(1) {
 			// Write data to PORTD	
-			display(index);
+			PORTD = pattern[index].data;
+			// wait
+			wait(pattern[index].delay);
+			// increment for next round
 			index++;
-			wait(10000);
-			if(index >=11)
+			if(index >=10)
 			{
 				index = 0;
 			}
