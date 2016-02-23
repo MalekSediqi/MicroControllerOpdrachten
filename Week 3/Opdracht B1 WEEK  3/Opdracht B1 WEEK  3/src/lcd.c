@@ -1,11 +1,10 @@
 #include <avr/io.h>
 #include <string.h>
-
+#include <util/delay.h>
+#include <avr/interrupt.h>
 #include "lcd.h"
 
-
-
-static LcdWriteNibble(int isCommand,unsigned char dat)
+static void LcdWriteNibble(int isCommand,unsigned char dat)
 {
 	if(isCommand)
 	{
@@ -32,7 +31,7 @@ static LcdWriteNibble(int isCommand,unsigned char dat)
 
 }
 
-void initLCD()
+void initLCD(void)
 {
 	LcdWriteNibble(1,0x02);
 	LcdWriteNibble(1,0x28);

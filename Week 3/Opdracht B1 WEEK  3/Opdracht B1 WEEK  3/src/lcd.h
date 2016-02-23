@@ -12,8 +12,8 @@
 #define _Lcd_H
 
 
-extern void initLCD();
-extern void printString(char* str);
-extern void setCursorPos(int YPos);
+void initLCD(void);
+void printString(char* str);
+void setCursorPos(int YPos);
 
 #endif // CONF_BOARD_H
