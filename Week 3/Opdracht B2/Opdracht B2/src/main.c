@@ -30,12 +30,39 @@
  */
 #include <asf.h>
 #include "lcd.h"
+#include <stdio.h>
+#include <util/delay.h>
+
+int counter =0;
+char lcdstr[8];
+
+ISR(TIMER2_COMP_vect)
+{
+	counter++;
+	sprintf(lcdstr, "%d", counter);
+}
+
+void Counter()
+{
+	SREG |=(1<<OCIE2);
+	TCCR2 |= (1 << CS22) | (1 << CS21) | (1 << CS20) | (1 << WGM21) | (1 << COM20);
+	TIMSK |= (1 << OCIE2);
+}
+
 int main (void)
 {
-		DDRC = 0xFF;
-		initLCD();
-		//clearScreen();
-		printString("malek",5);
-		setCursorPos(1);
-		printString("Kees",4);
+	EICRA |= 0x0B;
+	EIMSK |= 0x03;
+
+	sei();
+	Counter();
+	initLCD();
+	while(1)
+	{
+		printString(lcdstr,8);
+		_delay_ms(3000);
+	}
+	
 }
+
+

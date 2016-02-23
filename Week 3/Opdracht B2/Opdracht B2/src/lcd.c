@@ -74,3 +74,6 @@ void clearScreen()
 
 	LcdWriteNibble(1,0x01);
 }
+
+
+
