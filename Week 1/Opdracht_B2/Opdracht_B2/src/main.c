@@ -29,41 +29,12 @@
  * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
  */
 #include <asf.h>
-#include "lcd.h"
-#include <stdio.h>
-#include <util/delay.h>
-
-int counter =0;
-int Compervalue = 0;
-char lcdstr[8];
-
-ISR(TIMER2_COMP_vect)
-{
-	counter++;
-	sprintf(lcdstr, "%d", counter);
-}
-
-void Counter()
-{
-	TCCR2 |= (1 << CS22) | (1 << CS21) | (1 << CS20) | (1 << WGM21) | (1 << COM20);
-	TIMSK |= (1 << OCIE2);
-}
 
 int main (void)
 {
-	EICRA |= 0x0B;
-	EIMSK |= 0x03;
-	DDRC = 0xFF;
-	
-	sei();
-	Counter();
-	initLCD();
+	/* Insert system clock initialization code here (sysclk_init()). */
 
-	while(1)
-	{
-		printString(lcdstr,8);
-	}
-	
+	board_init();
+
+	/* Insert application code here, after the board has been initialized. */
 }
-
-
