@@ -33,50 +33,43 @@
 #include <stdio.h>
 #include <util/delay.h>
 
-int counter =0;
-int Compervalue = 0;
-char lcdstr[8];
+
+#define  BIT(x) (1 <<(x));
+volatile int counter;
+int Compervalue =1;
+char lcdstr[4];
+int TimerPreset = 0;
 
 ISR(TIMER2_COMP_vect)
 {
-	TCNT2 = TimerPreset;
 	counter++;
-	sprintf(lcdstr, "%d", counter);
 }
 
 void Counter()
 {
-
-	/*SREG |=(1<<OCIE2);
-	TCCR2 |= (1 << CS22) | (1 << CS21) | (1 << CS20) | (1 << WGM21) | (1 << COM20);
-	TIMSK |= (1 << OCIE2);
-	*/
-	TCNT2 = TimerPreset; // Preset value of counter 2
-	TIMSK |= BIT(6); // T2 overflow interrupt enable
-	SREG |= BIT(7); // turn_on intr all
-	TCCR2 = 0x07; // Initialize T2: ext.counting, rising edge, run 
+	OCR2 = Compervalue;
+	SREG |=(1<<OCIE2);
+	TIMSK |= BIT(7);
+	TCCR2 |= TCCR2 |= (1 << CS22) | (1 << CS21) | (1 << CS20) | (1 << WGM21) | (1 << COM20);
 }
 
 int main (void)
 {
-
-	EICRA |= 0x0B;
-	EIMSK |= 0x03;
-	DDRC = 0xFF;
-	
 	DDRD &= ~BIT(7);
 	DDRA = 0xFF;
 	DDRB = 0xFF;
-	sei();
-	Counter();
+	DDRC = 0xFF;
 	initLCD();
-
-	while(1)
+	Counter();
+	for (;;)
 	{
-		PORTA = TCNT2;
-		printString(lcdstr,8);
+			PORTA = TCNT2;
+			PORTB = counter;
+			sprintf(lcdstr,"%d",counter);
+			printString(lcdstr,4);
+			clearScreen();
+			_delay_ms(1);
 	}
-	
 }
 
 

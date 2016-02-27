@@ -11,10 +11,12 @@
 #ifndef _Lcd_H
 #define _Lcd_H
 
-
 extern void initLCD(void);
 extern void printString(char* str,int length);
-extern void setCursorPos(int YPos);
+extern void setYCursorPos(int YPos);
 extern void clearScreen();
+extern void shiftLeftRight(int);
+extern void setXCursorPos(int,int);
+extern void LcdWriteNibble(int,unsigned char);
 
 #endif // CONF_BOARD_H
