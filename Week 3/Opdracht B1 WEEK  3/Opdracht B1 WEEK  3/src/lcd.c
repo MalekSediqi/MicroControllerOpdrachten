@@ -6,7 +6,7 @@
 
 static void LcdWriteNibble(int isCommand,unsigned char dat)
 {
-	if(isCommand)
+	if(isCommand == 1)
 	{
 		PORTC = dat & 0xF0;
 		PORTC = PORTC | 0x08;
