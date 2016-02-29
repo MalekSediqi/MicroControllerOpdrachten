@@ -29,12 +29,47 @@
  * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
  */
 #include <asf.h>
+#include <stdio.h>
+#include <util/delay.h>
+
+#define  BIT(x) (1 <<(x));
+volatile int isHigh;
+
+ISR(TIMER2_OVF_vect)
+{
+	PORTD ^= 0x80;
+	if (isHigh == 1)
+	{
+		TCNT2 = 255-195;
+		isHigh = 0;
+	}else
+	{
+		TCNT2 = 255-117;
+		isHigh = 0;
+	}
+}
+
+void Init()
+{
+	isHigh = 0;
+	TCNT2 = 0;
+	TIMSK |= BIT(6);
+	TCCR2 = 0x05;
+}
 
 int main (void)
 {
-	/* Insert system clock initialization code here (sysclk_init()). */
+	DDRD = 0x80;
+	DDRA = 0xFF;
+	DDRB = 0xFF;
+	Init();
 
-	board_init();
-
-	/* Insert application code here, after the board has been initialized. */
+	SREG |= BIT(7);
+	while (1)
+	{
+		
+	}
+	return 1;
 }
+
+
