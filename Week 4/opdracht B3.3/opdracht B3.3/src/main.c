@@ -52,16 +52,14 @@ int main( void )
 	DDRC = 0xFF;
 	adcInit();	
 	initLCD();					// initialize ADC
- 	while (1)
- 	{
- 		
- 		ADCSRA |= BIT(6);				// Start ADC
- 		while ( ADCSRA & BIT(6) ) ;
- 		sprintf(temp,"%d",(int)ADCL);
-		printString("Graden: ",8);
-		setXCursorPos(3,3);
- 		printString(temp,2);
- 		setCursorPos(1);
+
+	while (1)
+	{
+		
+		ADCSRA |= BIT(6);				// Start ADC
+		while ( ADCSRA & BIT(6) ) ;
+		sprintf(temp,"Graden:%d",(int)(ADCL/10));		// omdat elke bit 0.
+		printString(temp,9);
 		PORTA = ADCL;					// Show MSB (bit 9:2) of ADC
  		wait(500);						// every 50 ms (busy waiting)
  	}
