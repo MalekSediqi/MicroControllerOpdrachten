@@ -21,14 +21,14 @@ void start(int input)
 	
 	switch(input)
 	{
-		case 32:
+		case 64:
 		state = S1;
-		//clearScreen();
+		clearScreen();
 		printString("S1",2);
 		break;
-		case 16: 
+		case 32: 
 		state = S2;
-		//clearScreen();
+		clearScreen();
 		printString("S2",2);
 		break;
 		default:
@@ -41,14 +41,14 @@ void S1(int input)
 
 	switch(input)
 	{
-		case 64:
+		case 128:
 		state = start;
-		//clearScreen();
+		clearScreen();
 		printString("start",5);
 		break;
-		case 16:
+		case 32:
 		state = S2;
-		//clearScreen();
+		clearScreen();
 		printString("S2",2);
 		break;
 		default:
@@ -57,17 +57,16 @@ void S1(int input)
 }
 void S2(int input)
 {
-	printString("S2",2);
 	switch(input)
 	{
-		case 32:
+		case 64:
 		state = S1;
-		//clearScreen();
+		clearScreen();
 		printString("S1",2);
 		break;
-		case 16:
+		case 32:
 		state = S3;
-		//clearScreen();
+		clearScreen();
 		printString("S3",2);
 		break;
 		default:
@@ -77,17 +76,16 @@ void S2(int input)
 }
 void S3(int input)
 {
-	printString("S3",2);
-	if(input == 16 || input == 32)
+	if(input == 64 || input == 32)
 	{
 		state = End;
-		//clearScreen();
+		clearScreen();
 		printString("End",3);
 	}
-	else if (input ==64)
+	else if (input ==128)
 	{
 		state = start;
-		//clearScreen();
+		clearScreen();
 		printString("start",5);
 		
 	}
@@ -95,44 +93,11 @@ void S3(int input)
 void End(int input)
 {	
 	
-	if(input == 64)
+	if(input == 128)
 	{
-		state == start;
-		//clearScreen();
+		state = start;
+		clearScreen();
 		printString("start",5);
-	}
-
-}
-void handleState(int state[])
-{
-	int i;
-	//int k = strlen(state);
-	for(i=0; i< 8; i++)
-	{
-		if(state[i] = PINA)
-		{
-			switch(i)
-			{
-				case 0:
-				PORTD = 127;
-				break;
-				case 1:
-				PORTD = 255;
-				break;
-				case 2:
-				PORTC = 1;
-				break;
-				case 3:
-				PORTD = 0;
-				PORTC = 0;
-				break;
-				case 4:
-				break;
-				default:
-				break;
-			}
-			wait(1000);
-		}
 	}
 
 }
@@ -140,17 +105,19 @@ void handleState(int state[])
 
 int main (void)
 {
-	state == start;
+	state = start;
 	initLCD();
 	//clearScreen();
 	printString("start",5);
 	DDRC = 0b11111111;
-	DDRA =0;
+	DDRA = 0;
 	/////////////////////////////////////////////////b7a
+
 	while(true)
 	{
-		state(PORTA);
-		wait(500);
+		
+		state(PIND);
+		wait(1000);
 	}
 	return 1;
 
