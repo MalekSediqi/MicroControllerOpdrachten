@@ -16,5 +16,5 @@ extern void initLCD(void);
 extern void printString(char* str,int length);
 extern void setCursorPos(int YPos);
 extern void clearScreen();
-
+extern void setXCursorPos(int,int);
 #endif // CONF_BOARD_H

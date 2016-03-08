@@ -49,17 +49,20 @@ int main( void )
 	char* temp = "hoiod";
 	DDRF = 0x00;					// set PORTF for input (ADC)
 	DDRA = 0xFF;					// set PORTA for output 
+	DDRC = 0xFF;
 	adcInit();	
 	initLCD();					// initialize ADC
-
-	while (1)
-	{
-		
-		ADCSRA |= BIT(6);				// Start ADC
-		while ( ADCSRA & BIT(6) ) ;
-		sprintf(temp,"%d",(int)ADCL);		// Wait for completion
-		printString("hoi",4);
+ 	while (1)
+ 	{
+ 		
+ 		ADCSRA |= BIT(6);				// Start ADC
+ 		while ( ADCSRA & BIT(6) ) ;
+ 		sprintf(temp,"%d",(int)ADCL);
+		printString("Graden: ",8);
+		setXCursorPos(3,3);
+ 		printString(temp,2);
+ 		setCursorPos(1);
 		PORTA = ADCL;					// Show MSB (bit 9:2) of ADC
-		wait(500);						// every 50 ms (busy waiting)
-	}
+ 		wait(500);						// every 50 ms (busy waiting)
+ 	}
 }

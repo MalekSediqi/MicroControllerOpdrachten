@@ -35,11 +35,26 @@ static void LcdWriteNibble(int isCommand,unsigned char dat)
 
 void initLCD(void)
 {
-	LcdWriteNibble(1,0x02);
-	LcdWriteNibble(1,0x28);
-	LcdWriteNibble(1,0x0C);
-	LcdWriteNibble(1,0x06);
-	LcdWriteNibble(1,0x80);
+ 	DDRC = 0b11111111;
+
+ 	_delay_ms(100);
+
+ 	// return home
+ 	LcdWriteNibble(1, 0x02 );
+ 	// mode: 4 bits interface data, 2 lines, 5x8 dots
+ 	_delay_ms(50);
+ 	LcdWriteNibble(1, 0x28 );
+ 	// display: on, cursor off, blinking off
+ 	_delay_ms(50);
+ 	LcdWriteNibble(1, 0x0C );
+ 	// entry mode: cursor to right, no shift
+ 	_delay_ms(50);
+ 	LcdWriteNibble(1, 0x06 );
+ 	// RAM address: 0, first position, line 1
+ 	_delay_ms(50);
+ 	clearScreen();
+
+ 	_delay_ms(100);
 }
 
 void printString(char* str, int length)
@@ -54,7 +69,20 @@ void printString(char* str, int length)
 }
 
 
-
+void setXCursorPos(int leftRight,int count)
+{
+	for (int i=0; i<count; i++) {
+		switch(leftRight)
+		{
+			case 0: LcdWriteNibble(1,0x18);		// shift rechts
+			_delay_ms(2);
+			break;
+			case 1: LcdWriteNibble(1,0x1c);		// shift links
+			_delay_ms(2);
+			break;
+		}
+	}
+}
 
 void setCursorPos(int YPos)
 {
