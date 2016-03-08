@@ -57,8 +57,8 @@ int main( void )
 		
 		ADCSRA |= BIT(6);				// Start ADC
 		while ( ADCSRA & BIT(6) ) ;
-		sprintf(temp,"%d",(int)ADCL);		// Wait for completion
-		printString("hoi",4);
+		sprintf(temp,"Graden:%d",(int)(ADCL/10));		// omdat elke bit 0.
+		printString(temp,9);
 		PORTA = ADCL;					// Show MSB (bit 9:2) of ADC
 		wait(500);						// every 50 ms (busy waiting)
 	}
