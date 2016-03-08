@@ -18,14 +18,18 @@ void wait(int param1)
 }
 void start(int input)
 {
-	printString("start",5);
+	
 	switch(input)
 	{
 		case 32:
 		state = S1;
+		//clearScreen();
+		printString("S1",2);
 		break;
 		case 16: 
 		state = S2;
+		//clearScreen();
+		printString("S2",2);
 		break;
 		default:
 		break;
@@ -34,14 +38,18 @@ void start(int input)
 }
 void S1(int input)
 {
-	printString("S1",2);
+
 	switch(input)
 	{
 		case 64:
 		state = start;
+		//clearScreen();
+		printString("start",5);
 		break;
 		case 16:
 		state = S2;
+		//clearScreen();
+		printString("S2",2);
 		break;
 		default:
 		break;
@@ -54,9 +62,13 @@ void S2(int input)
 	{
 		case 32:
 		state = S1;
+		//clearScreen();
+		printString("S1",2);
 		break;
 		case 16:
 		state = S3;
+		//clearScreen();
+		printString("S3",2);
 		break;
 		default:
 		break;
@@ -69,18 +81,25 @@ void S3(int input)
 	if(input == 16 || input == 32)
 	{
 		state = End;
+		//clearScreen();
+		printString("End",3);
 	}
 	else if (input ==64)
 	{
 		state = start;
+		//clearScreen();
+		printString("start",5);
+		
 	}
 }
 void End(int input)
 {	
-	printString("End",3);
+	
 	if(input == 64)
 	{
 		state == start;
+		//clearScreen();
+		printString("start",5);
 	}
 
 }
@@ -123,13 +142,13 @@ int main (void)
 {
 	state == start;
 	initLCD();
-	DDRD = 0b11111111;
+	//clearScreen();
+	printString("start",5);
 	DDRC = 0b11111111;
-	DDRB = 0b11111111;
+	DDRA =0;
 	/////////////////////////////////////////////////b7a
 	while(true)
 	{
-		clearScreen();
 		state(PORTA);
 		wait(500);
 	}
