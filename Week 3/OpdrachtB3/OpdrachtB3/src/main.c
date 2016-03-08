@@ -42,10 +42,11 @@ ISR(TIMER2_OVF_vect)
 	{
 		TCNT2 = 255-195;
 		isHigh = 0;
-	}else
+	}
+	else
 	{
 		TCNT2 = 255-117;
-		isHigh = 0;
+		isHigh = 1;
 	}
 }
 
