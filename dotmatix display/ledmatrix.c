@@ -155,6 +155,71 @@ void setLedRow(int row,int data)
 	}
 	
 }
+
+void arrowUp()
+{
+	setLedRow(8,1);
+	setLedRow(7,143);
+	setLedRow(6,143);
+	setLedRow(5,1);
+}
+void clearScreen()
+{
+		setLedRow(1,0);
+		setLedRow(2,0);
+		setLedRow(3,0);
+		setLedRow(4,0);
+		setLedRow(5,0);
+		setLedRow(6,0);
+		setLedRow(7,0);
+		setLedRow(8,0);
+}
+void arrowDown()
+{
+	setLedRow(8,32);
+	setLedRow(7,124);
+	setLedRow(6,124);
+	setLedRow(5,32);
+}
+void displayNummer(int nummer)
+{
+	switch(nummer)
+	{
+		case 0:
+		setLedRow(4,56);
+		setLedRow(3,68);
+		setLedRow(2,68);
+		setLedRow(1,56);
+		break;
+		case 1:
+		setLedRow(4,0);
+		setLedRow(3,4);
+		setLedRow(2,124);
+		setLedRow(1,0);
+		break;
+		case 2:
+		setLedRow(4,72);
+		setLedRow(3,104);
+		setLedRow(2,88);
+		setLedRow(1,72);
+		break;
+		case 3:
+		break;
+		case 4:
+		break;
+		case 5:
+		break;
+		case 6:
+		break;
+		case 7:
+		break;
+		case 8:
+		break;
+		case 9:
+		break;
+	}
+}
+
 /******************************************************************/
 int main( void )
 /* 
@@ -211,15 +276,12 @@ Version :    	DMK, Initial code
 		twi_tx(0x00);	// Address
 		twi_tx(65535);	// data
 		twi_stop();	*/
-		setLedRow(1,0);
-		setLedRow(2,0);
-		setLedRow(3,0);
-		setLedRow(4,0);
-		setLedRow(5,0);
-		setLedRow(6,0);
-		setLedRow(7,0);
-		setLedRow(8,0);
+		clearScreen();
 		wait(500);
+		arrowUp();
+		wait(2000);
+		arrowDown();
+		wait(2000);
 	}
 	/*for(i =0; i<66000; i++ )
 	{
