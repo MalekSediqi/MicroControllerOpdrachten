@@ -248,6 +248,37 @@ void displayNummer(int nummer)
 	}
 }
 
+void toFloor(int currentFloor,int destination)
+{
+	if(currentFloor< destination)
+	{
+		arrowUp();
+		for(;destination >= currentFloor; currentFloor++)
+		{
+			if(destination == currentFloor)
+			{
+				clearScreen();
+			}
+			displayNummer(currentFloor);
+			wait(1000);
+			
+		}
+	}
+	else
+	{
+		arrowDown();
+		for(;destination <= currentFloor; currentFloor--)
+		{
+			if(destination == currentFloor)
+			{
+				clearScreen();
+			}
+			displayNummer(currentFloor);
+			wait(1000);
+		}
+	}
+}
+
 /******************************************************************/
 int main( void )
 /* 
@@ -259,6 +290,8 @@ Version :    	DMK, Initial code
 *******************************************************************/
 {
 	int i = 0;
+	int CurrentFloor =0;
+	int DestinationFloor =0;
 	twi_init();		// Init TWI interface
 
 	// Init HT16K22. Page 32 datasheet
@@ -282,8 +315,7 @@ Version :    	DMK, Initial code
 	twi_tx(0x81);	// Display OFF - Blink On
 	twi_stop();
 
-	while (1)
-	{
+
 		/*twi_start();
 		twi_tx(0xE0);	// Display I2C addres + R/W bit
 		twi_tx(0x00);	// Address
@@ -328,6 +360,42 @@ Version :    	DMK, Initial code
 			wait(1000);
 		}
 		wait(500);
+	while(1)
+	{
+		switch(PINA)
+		{
+			case 1:
+			DestinationFloor =0;
+			break;
+			case 2:
+			DestinationFloor =1;
+			break;
+			case 4:
+			DestinationFloor =2;
+			break;
+			case 8:
+			DestinationFloor =3;
+			break;
+			case 16:
+			DestinationFloor =4;
+			break;
+			case 32:
+			DestinationFloor =5;
+			break;
+			case 64:
+			DestinationFloor =6;
+			break;
+			case 128:
+			DestinationFloor =7;
+			break;
+			default:
+			break;
+		}
+		if(CurrentFloor != DestinationFloor)
+		{
+			toFloor(CurrentFloor,DestinationFloor);
+			CurrentFloor = DestinationFloor;
+		}
 	}
 	/*for(i =0; i<66000; i++ )
 	{
