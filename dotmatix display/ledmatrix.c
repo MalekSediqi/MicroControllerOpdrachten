@@ -199,23 +199,51 @@ void displayNummer(int nummer)
 		break;
 		case 2:
 		setLedRow(4,72);
-		setLedRow(3,104);
-		setLedRow(2,88);
+		setLedRow(3,100);
+		setLedRow(2,84);
 		setLedRow(1,72);
 		break;
 		case 3:
+		setLedRow(4,40);
+		setLedRow(3,68);
+		setLedRow(2,84);
+		setLedRow(1,40);
 		break;
 		case 4:
+		setLedRow(4,28);
+		setLedRow(3,16);
+		setLedRow(2,16);
+		setLedRow(1,124);
 		break;
 		case 5:
+		setLedRow(4,92);
+		setLedRow(3,84);
+		setLedRow(2,84);
+		setLedRow(1,116);
 		break;
 		case 6:
+		setLedRow(4,124);
+		setLedRow(3,84);
+		setLedRow(2,84);
+		setLedRow(1,116);
 		break;
 		case 7:
+		setLedRow(4,4);
+		setLedRow(3,100);
+		setLedRow(2,20);
+		setLedRow(1,12);
 		break;
 		case 8:
+		setLedRow(4,124);
+		setLedRow(3,84);
+		setLedRow(2,84);
+		setLedRow(1,124);
 		break;
 		case 9:
+		setLedRow(4,92);
+		setLedRow(3,84);
+		setLedRow(2,84);
+		setLedRow(1,124);
 		break;
 	}
 }
@@ -279,9 +307,27 @@ Version :    	DMK, Initial code
 		clearScreen();
 		wait(500);
 		arrowUp();
-		wait(2000);
+		for(int i = 0; i<10;i++)
+		{
+			if(i == 9)
+			{
+				clearScreen();
+			}
+			displayNummer(i);
+			wait(1000);
+		}
+		wait(500);
 		arrowDown();
-		wait(2000);
+		for(int i = 9; i>=0;i--)
+		{
+			if(i == 0)
+			{
+				clearScreen();
+			}
+			displayNummer(i);
+			wait(1000);
+		}
+		wait(500);
 	}
 	/*for(i =0; i<66000; i++ )
 	{

@@ -120,7 +120,7 @@ LOAD c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x5fe
+.text           0x00000000      0x836
  *(.vectors)
  .vectors       0x00000000       0x8c c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128.o
                 0x00000000                __vectors
@@ -128,42 +128,42 @@ LOAD c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a
  *(.vectors)
  *(.progmem.gcc*)
  .progmem.gcc_sw_table
-                0x0000008c       0x10 ledmatrix.o
+                0x0000008c       0x24 ledmatrix.o
  *(.progmem*)
-                0x0000009c                . = ALIGN (0x2)
-                0x0000009c                __trampolines_start = .
+                0x000000b0                . = ALIGN (0x2)
+                0x000000b0                __trampolines_start = .
  *(.trampolines)
- .trampolines   0x0000009c        0x0 linker stubs
+ .trampolines   0x000000b0        0x0 linker stubs
  *(.trampolines*)
-                0x0000009c                __trampolines_end = .
+                0x000000b0                __trampolines_end = .
  *(.jumptables)
  *(.jumptables*)
  *(.lowtext)
  *(.lowtext*)
-                0x0000009c                __ctors_start = .
+                0x000000b0                __ctors_start = .
  *(.ctors)
-                0x0000009c                __ctors_end = .
-                0x0000009c                __dtors_start = .
+                0x000000b0                __ctors_end = .
+                0x000000b0                __dtors_start = .
  *(.dtors)
-                0x0000009c                __dtors_end = .
+                0x000000b0                __dtors_end = .
  SORT(*)(.ctors)
  SORT(*)(.dtors)
  *(.init0)
- .init0         0x0000009c        0x0 c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128.o
-                0x0000009c                __init
+ .init0         0x000000b0        0x0 c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128.o
+                0x000000b0                __init
  *(.init0)
  *(.init1)
  *(.init1)
  *(.init2)
- .init2         0x0000009c        0xc c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128.o
+ .init2         0x000000b0        0xc c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128.o
  *(.init2)
  *(.init3)
  *(.init3)
  *(.init4)
- .init4         0x000000a8       0x1a c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128.o
-                0x000000a8                __do_copy_data
- .init4         0x000000c2       0x10 c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a(_clear_bss.o)
-                0x000000c2                __do_clear_bss
+ .init4         0x000000bc       0x1a c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128.o
+                0x000000bc                __do_copy_data
+ .init4         0x000000d6       0x10 c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a(_clear_bss.o)
+                0x000000d6                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
@@ -174,71 +174,72 @@ LOAD c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x000000d2        0x8 c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128.o
+ .init9         0x000000e6        0x8 c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128.o
  *(.init9)
  *(.text)
- .text          0x000000da        0x4 c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128.o
-                0x000000da                __vector_22
-                0x000000da                __vector_28
-                0x000000da                __vector_1
-                0x000000da                __vector_32
-                0x000000da                __vector_34
-                0x000000da                __vector_24
-                0x000000da                __vector_12
-                0x000000da                __bad_interrupt
-                0x000000da                __vector_6
-                0x000000da                __vector_31
-                0x000000da                __vector_3
-                0x000000da                __vector_23
-                0x000000da                __vector_30
-                0x000000da                __vector_25
-                0x000000da                __vector_11
-                0x000000da                __vector_13
-                0x000000da                __vector_17
-                0x000000da                __vector_19
-                0x000000da                __vector_7
-                0x000000da                __vector_27
-                0x000000da                __vector_5
-                0x000000da                __vector_33
-                0x000000da                __vector_4
-                0x000000da                __vector_9
-                0x000000da                __vector_2
-                0x000000da                __vector_21
-                0x000000da                __vector_15
-                0x000000da                __vector_29
-                0x000000da                __vector_8
-                0x000000da                __vector_26
-                0x000000da                __vector_14
-                0x000000da                __vector_10
-                0x000000da                __vector_16
-                0x000000da                __vector_18
-                0x000000da                __vector_20
- .text          0x000000de      0x512 ledmatrix.o
-                0x000000de                twi_init
-                0x00000116                wait
-                0x000000ea                twi_start
-                0x000000fa                twi_stop
-                0x00000468                main
-                0x00000102                twi_tx
-                0x00000436                arrowDown
-                0x00000134                setLedRow
-                0x000003a2                arrowUp
-                0x000003d4                clearScreen
- .text          0x000005f0        0x0 c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a(_exit.o)
- .text          0x000005f0        0x0 c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a(_tablejump.o)
- .text          0x000005f0        0x0 c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a(_clear_bss.o)
-                0x000005f0                . = ALIGN (0x2)
+ .text          0x000000ee        0x4 c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128.o
+                0x000000ee                __vector_22
+                0x000000ee                __vector_28
+                0x000000ee                __vector_1
+                0x000000ee                __vector_32
+                0x000000ee                __vector_34
+                0x000000ee                __vector_24
+                0x000000ee                __vector_12
+                0x000000ee                __bad_interrupt
+                0x000000ee                __vector_6
+                0x000000ee                __vector_31
+                0x000000ee                __vector_3
+                0x000000ee                __vector_23
+                0x000000ee                __vector_30
+                0x000000ee                __vector_25
+                0x000000ee                __vector_11
+                0x000000ee                __vector_13
+                0x000000ee                __vector_17
+                0x000000ee                __vector_19
+                0x000000ee                __vector_7
+                0x000000ee                __vector_27
+                0x000000ee                __vector_5
+                0x000000ee                __vector_33
+                0x000000ee                __vector_4
+                0x000000ee                __vector_9
+                0x000000ee                __vector_2
+                0x000000ee                __vector_21
+                0x000000ee                __vector_15
+                0x000000ee                __vector_29
+                0x000000ee                __vector_8
+                0x000000ee                __vector_26
+                0x000000ee                __vector_14
+                0x000000ee                __vector_10
+                0x000000ee                __vector_16
+                0x000000ee                __vector_18
+                0x000000ee                __vector_20
+ .text          0x000000f2      0x736 ledmatrix.o
+                0x000000f2                twi_init
+                0x0000012a                wait
+                0x0000047c                displayNummer
+                0x000000fe                twi_start
+                0x0000010e                twi_stop
+                0x00000610                main
+                0x00000116                twi_tx
+                0x0000044a                arrowDown
+                0x00000148                setLedRow
+                0x000003b6                arrowUp
+                0x000003e8                clearScreen
+ .text          0x00000828        0x0 c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a(_exit.o)
+ .text          0x00000828        0x0 c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a(_tablejump.o)
+ .text          0x00000828        0x0 c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a(_clear_bss.o)
+                0x00000828                . = ALIGN (0x2)
  *(.text.*)
- .text.libgcc   0x000005f0        0x0 c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x000005f0        0xc c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a(_tablejump.o)
-                0x000005f4                __tablejump__
-                0x000005f0                __tablejump2__
- .text.libgcc   0x000005fc        0x0 c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a(_clear_bss.o)
-                0x000005fc                . = ALIGN (0x2)
+ .text.libgcc   0x00000828        0x0 c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x00000828        0xc c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a(_tablejump.o)
+                0x0000082c                __tablejump__
+                0x00000828                __tablejump2__
+ .text.libgcc   0x00000834        0x0 c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a(_clear_bss.o)
+                0x00000834                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000005fc        0x0 c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a(_exit.o)
-                0x000005fc                exit
-                0x000005fc                _exit
+ .fini9         0x00000834        0x0 c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a(_exit.o)
+                0x00000834                exit
+                0x00000834                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -257,11 +258,11 @@ LOAD c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000005fc        0x2 c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000834        0x2 c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000005fe                _etext = .
+                0x00000836                _etext = .
 
-.data           0x00800100        0x0 load address 0x000005fe
+.data           0x00800100        0x0 load address 0x00000836
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800100        0x0 c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128.o
@@ -288,8 +289,8 @@ LOAD c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a
  *(.bss*)
  *(COMMON)
                 0x00800100                PROVIDE (__bss_end, .)
-                0x000005fe                __data_load_start = LOADADDR (.data)
-                0x000005fe                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000836                __data_load_start = LOADADDR (.data)
+                0x00000836                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800100        0x0
                 0x00800100                PROVIDE (__noinit_start, .)
@@ -343,41 +344,44 @@ LOAD c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a
                 0x00000000       0x20 ledmatrix.o
 
 .debug_pubnames
-                0x00000000       0x8f
+                0x00000000       0xa1
  *(.debug_pubnames)
  .debug_pubnames
-                0x00000000       0x8f ledmatrix.o
+                0x00000000       0xa1 ledmatrix.o
 
-.debug_info     0x00000000      0x697
+.debug_info     0x00000000      0x6fe
  *(.debug_info)
- .debug_info    0x00000000      0x697 ledmatrix.o
+ .debug_info    0x00000000      0x6fe ledmatrix.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev   0x00000000      0x17a
+.debug_abbrev   0x00000000      0x1c8
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x17a ledmatrix.o
+ .debug_abbrev  0x00000000      0x1c8 ledmatrix.o
 
-.debug_line     0x00000000      0x68b
+.debug_line     0x00000000      0x865
  *(.debug_line)
- .debug_line    0x00000000      0x68b ledmatrix.o
+ .debug_line    0x00000000      0x865 ledmatrix.o
 
-.debug_frame    0x00000000       0xb0
+.debug_frame    0x00000000       0xc0
  *(.debug_frame)
- .debug_frame   0x00000000       0xb0 ledmatrix.o
+ .debug_frame   0x00000000       0xc0 ledmatrix.o
 
-.debug_str      0x00000000      0x148
+.debug_str      0x00000000      0x15d
  *(.debug_str)
- .debug_str     0x00000000      0x148 ledmatrix.o
-                                0x17c (size before relaxing)
+ .debug_str     0x00000000      0x15d ledmatrix.o
+                                0x191 (size before relaxing)
 
-.debug_loc      0x00000000       0xd3
+.debug_loc      0x00000000      0x1cb
  *(.debug_loc)
- .debug_loc     0x00000000       0xd3 ledmatrix.o
+ .debug_loc     0x00000000      0x1cb ledmatrix.o
 
 .debug_macinfo
  *(.debug_macinfo)
 OUTPUT(ledmatrix.elf elf32-avr)
 LOAD linker stubs
+
+.debug_ranges   0x00000000       0x30
+ .debug_ranges  0x00000000       0x30 ledmatrix.o
 
 Cross Reference Table
 
@@ -438,6 +442,7 @@ _exit                                             c:/winavr-20070525/bin/../lib/
 arrowDown                                         ledmatrix.o
 arrowUp                                           ledmatrix.o
 clearScreen                                       ledmatrix.o
+displayNummer                                     ledmatrix.o
 exit                                              c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/avr5\libgcc.a(_exit.o)
                                                   c:/winavr-20070525/bin/../lib/gcc/avr/4.1.2/../../../../avr/lib/avr5/crtm128.o
 main                                              ledmatrix.o
