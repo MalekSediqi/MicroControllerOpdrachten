@@ -92,6 +92,7 @@ Version :    	DMK, Initial code
 		_delay_ms( 1 );		// library function (max 30 ms at 8MHz)
 	}
 }
+/*this method wil set the requested row of leds to the requested data */
 void setLedRow(int row,int data)
 {
 	switch(row)
@@ -155,7 +156,7 @@ void setLedRow(int row,int data)
 	}
 	
 }
-
+/* displays the up arrow on the left site of the dot matrix display */
 void arrowUp()
 {
 	setLedRow(8,1);
@@ -163,6 +164,7 @@ void arrowUp()
 	setLedRow(6,143);
 	setLedRow(5,1);
 }
+/* clears the dot matrix display */
 void clearScreen()
 {
 		setLedRow(1,0);
@@ -174,6 +176,7 @@ void clearScreen()
 		setLedRow(7,0);
 		setLedRow(8,0);
 }
+/* displays the down arrow on the left site of the dot matrix display */
 void arrowDown()
 {
 	setLedRow(8,32);
@@ -181,6 +184,7 @@ void arrowDown()
 	setLedRow(6,124);
 	setLedRow(5,32);
 }
+/* displays the requested nummer on the left side of the dot matrix display */
 void displayNummer(int nummer)
 {
 	switch(nummer)
@@ -247,7 +251,7 @@ void displayNummer(int nummer)
 		break;
 	}
 }
-
+/* handels the display for request to travel from one floor to a other */
 void toFloor(int currentFloor,int destination)
 {
 	if(currentFloor< destination)
@@ -293,34 +297,7 @@ Version :    	DMK, Initial code
 	int CurrentFloor =0;
 	int DestinationFloor =0;
 	twi_init();		// Init TWI interface
-
-	// Init HT16K22. Page 32 datasheet
-	twi_start();
-	twi_tx(0xE0);	// Display I2C addres + R/W bit
-	twi_tx(0x21);	// Internal osc on (page 10 HT16K33)
-	twi_stop();
-
-	twi_start();
-	twi_tx(0xE0);	// Display I2C address + R/W bit
-	twi_tx(0xA0);	// HT16K33 pins all output
-	twi_stop();
-
-	twi_start();
-	twi_tx(0xE0);	// Display I2C address + R/W bit
-	twi_tx(0xE3);	// Display Dimming 4/16 duty cycle
-	twi_stop();
-
-	twi_start();
-	twi_tx(0xE0);	// Display I2C address + R/W bit
-	twi_tx(0x81);	// Display OFF - Blink On
-	twi_stop();
-
-
-		/*twi_start();
-		twi_tx(0xE0);	// Display I2C addres + R/W bit
-		twi_tx(0x00);	// Address
-		twi_tx(0x00);	// data
-		twi_stop();*/
+	//dot matrix test
 		setLedRow(1,255);
 		setLedRow(2,255);
 		setLedRow(3,255);
@@ -329,15 +306,12 @@ Version :    	DMK, Initial code
 		setLedRow(6,255);
 		setLedRow(7,255);
 		setLedRow(8,255);
+		
 		wait(500);	
-
-		/*twi_start();
-		twi_tx(0xE0);	// Display I2C addres + R/W bit
-		twi_tx(0x00);	// Address
-		twi_tx(65535);	// data
-		twi_stop();	*/
+		
 		clearScreen();
 		wait(500);
+		
 		arrowUp();
 		for(int i = 0; i<10;i++)
 		{
@@ -360,7 +334,8 @@ Version :    	DMK, Initial code
 			wait(1000);
 		}
 		wait(500);
-	while(1)
+// main loop for the elevator demo		
+	while(1)  
 	{
 		switch(PINA)
 		{
@@ -397,32 +372,7 @@ Version :    	DMK, Initial code
 			CurrentFloor = DestinationFloor;
 		}
 	}
-	/*for(i =0; i<66000; i++ )
-	{
-		twi_start();
-		twi_tx(0xE0);	// Display I2C addres + R/W bit
-		twi_tx(i);	// Address
-		twi_tx(0x00);	// data
-		twi_stop();
-		twi_start();
-		twi_tx(0xE0);	// Display I2C addres + R/W bit
-		twi_tx(0x00);	// Address
-		twi_tx(0x00);	// data
-		twi_stop();
-		wait(500);	
-
-		twi_start();
-		twi_tx(0xE0);	// Display I2C addres + R/W bit
-		twi_tx(i);	// Address
-		twi_tx(65535);	// data
-		twi_stop();	
-		twi_start();
-		twi_tx(0xE0);	// Display I2C addres + R/W bit
-		twi_tx(0x00);	// Address
-		twi_tx(65535);	// data
-		twi_stop();	
-		wait(500);
-	}*/
+	
 
 	return 1;
 }
