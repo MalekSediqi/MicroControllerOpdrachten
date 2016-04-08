@@ -6,7 +6,7 @@
 ;
 
 ;
-.INCLUDE "m128def.inc"
+;.INCLUDE "m128def.inc"
 ;
 .CSEG
 .ORG 	$0000
@@ -16,18 +16,17 @@
 .ORG	$0200
 ;
 ; Replace with your application code
+main: 
 start:
 	ldi r17,$55;
-	
-	st $0540,r17;
-	st $0541,r17;
-	st $0542,r17;
-	st $0543,r17;
-	st $0544,r17;
-	st $0545,r17;
-	st $0546,r17;
-	st $0547,r17;
-	st $0548,r17;
+	ldi XL,$40
+	ldi XH,$05
+	ldi r16,$8;
+Loop:
+	dec r16;
+	st X+,r17;
+	cpi r16,0
+	brne Loop
 	no_end:   			; unlimited loop, when done
 		rjmp no_end	
 	
